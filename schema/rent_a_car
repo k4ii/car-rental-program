@@ -1,0 +1,609 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 14.0
+-- Dumped by pg_dump version 14.0
+
+-- Started on 2023-01-26 18:43:31
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 210 (class 1259 OID 57256)
+-- Name: public.Account; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."public.Account" (
+    account_id integer NOT NULL,
+    email character varying(30) NOT NULL,
+    password character varying(16) NOT NULL,
+    address character varying(50) NOT NULL
+);
+
+
+ALTER TABLE public."public.Account" OWNER TO postgres;
+
+--
+-- TOC entry 209 (class 1259 OID 57255)
+-- Name: public.Account_account_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."public.Account_account_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."public.Account_account_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 3373 (class 0 OID 0)
+-- Dependencies: 209
+-- Name: public.Account_account_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."public.Account_account_id_seq" OWNED BY public."public.Account".account_id;
+
+
+--
+-- TOC entry 224 (class 1259 OID 57305)
+-- Name: public.Branch; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."public.Branch" (
+    branch_id integer NOT NULL,
+    address character varying(50) NOT NULL,
+    "isRenting" boolean NOT NULL
+);
+
+
+ALTER TABLE public."public.Branch" OWNER TO postgres;
+
+--
+-- TOC entry 223 (class 1259 OID 57304)
+-- Name: public.Branch_branch_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."public.Branch_branch_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."public.Branch_branch_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 3374 (class 0 OID 0)
+-- Dependencies: 223
+-- Name: public.Branch_branch_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."public.Branch_branch_id_seq" OWNED BY public."public.Branch".branch_id;
+
+
+--
+-- TOC entry 222 (class 1259 OID 57297)
+-- Name: public.Car; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."public.Car" (
+    car_id integer NOT NULL,
+    car_name character varying(20) NOT NULL,
+    car_type character varying(20) NOT NULL,
+    fuel_capacity integer NOT NULL,
+    mileage integer NOT NULL,
+    mpg integer NOT NULL,
+    "isAvailable" boolean NOT NULL,
+    location integer NOT NULL
+);
+
+
+ALTER TABLE public."public.Car" OWNER TO postgres;
+
+--
+-- TOC entry 220 (class 1259 OID 57295)
+-- Name: public.Car_car_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."public.Car_car_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."public.Car_car_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 3375 (class 0 OID 0)
+-- Dependencies: 220
+-- Name: public.Car_car_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."public.Car_car_id_seq" OWNED BY public."public.Car".car_id;
+
+
+--
+-- TOC entry 221 (class 1259 OID 57296)
+-- Name: public.Car_location_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."public.Car_location_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."public.Car_location_seq" OWNER TO postgres;
+
+--
+-- TOC entry 3376 (class 0 OID 0)
+-- Dependencies: 221
+-- Name: public.Car_location_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."public.Car_location_seq" OWNED BY public."public.Car".location;
+
+
+--
+-- TOC entry 213 (class 1259 OID 57266)
+-- Name: public.Customer; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."public.Customer" (
+    customer_id integer NOT NULL,
+    email character varying(30) NOT NULL,
+    password character varying(16) NOT NULL,
+    address character varying(50) NOT NULL,
+    reservation_id integer NOT NULL
+);
+
+
+ALTER TABLE public."public.Customer" OWNER TO postgres;
+
+--
+-- TOC entry 211 (class 1259 OID 57264)
+-- Name: public.Customer_customer_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."public.Customer_customer_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."public.Customer_customer_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 3377 (class 0 OID 0)
+-- Dependencies: 211
+-- Name: public.Customer_customer_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."public.Customer_customer_id_seq" OWNED BY public."public.Customer".customer_id;
+
+
+--
+-- TOC entry 212 (class 1259 OID 57265)
+-- Name: public.Customer_reservation_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."public.Customer_reservation_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."public.Customer_reservation_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 3378 (class 0 OID 0)
+-- Dependencies: 212
+-- Name: public.Customer_reservation_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."public.Customer_reservation_id_seq" OWNED BY public."public.Customer".reservation_id;
+
+
+--
+-- TOC entry 216 (class 1259 OID 57277)
+-- Name: public.Employee; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."public.Employee" (
+    employee_id integer NOT NULL,
+    email character varying(30) NOT NULL,
+    password character varying(16) NOT NULL,
+    address character varying(50) NOT NULL,
+    location integer NOT NULL
+);
+
+
+ALTER TABLE public."public.Employee" OWNER TO postgres;
+
+--
+-- TOC entry 214 (class 1259 OID 57275)
+-- Name: public.Employee_employee_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."public.Employee_employee_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."public.Employee_employee_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 3379 (class 0 OID 0)
+-- Dependencies: 214
+-- Name: public.Employee_employee_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."public.Employee_employee_id_seq" OWNED BY public."public.Employee".employee_id;
+
+
+--
+-- TOC entry 215 (class 1259 OID 57276)
+-- Name: public.Employee_location_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."public.Employee_location_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."public.Employee_location_seq" OWNER TO postgres;
+
+--
+-- TOC entry 3380 (class 0 OID 0)
+-- Dependencies: 215
+-- Name: public.Employee_location_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."public.Employee_location_seq" OWNED BY public."public.Employee".location;
+
+
+--
+-- TOC entry 219 (class 1259 OID 57288)
+-- Name: public.Reservation; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."public.Reservation" (
+    reservation_id integer NOT NULL,
+    begin_date timestamp with time zone NOT NULL,
+    end_date timestamp with time zone NOT NULL,
+    invoice money NOT NULL,
+    car_id integer NOT NULL
+);
+
+
+ALTER TABLE public."public.Reservation" OWNER TO postgres;
+
+--
+-- TOC entry 218 (class 1259 OID 57287)
+-- Name: public.Reservation_car_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."public.Reservation_car_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."public.Reservation_car_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 3381 (class 0 OID 0)
+-- Dependencies: 218
+-- Name: public.Reservation_car_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."public.Reservation_car_id_seq" OWNED BY public."public.Reservation".car_id;
+
+
+--
+-- TOC entry 217 (class 1259 OID 57286)
+-- Name: public.Reservation_reservation_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."public.Reservation_reservation_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."public.Reservation_reservation_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 3382 (class 0 OID 0)
+-- Dependencies: 217
+-- Name: public.Reservation_reservation_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."public.Reservation_reservation_id_seq" OWNED BY public."public.Reservation".reservation_id;
+
+
+--
+-- TOC entry 3193 (class 2604 OID 57259)
+-- Name: public.Account account_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."public.Account" ALTER COLUMN account_id SET DEFAULT nextval('public."public.Account_account_id_seq"'::regclass);
+
+
+--
+-- TOC entry 3202 (class 2604 OID 57308)
+-- Name: public.Branch branch_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."public.Branch" ALTER COLUMN branch_id SET DEFAULT nextval('public."public.Branch_branch_id_seq"'::regclass);
+
+
+--
+-- TOC entry 3200 (class 2604 OID 57300)
+-- Name: public.Car car_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."public.Car" ALTER COLUMN car_id SET DEFAULT nextval('public."public.Car_car_id_seq"'::regclass);
+
+
+--
+-- TOC entry 3201 (class 2604 OID 57301)
+-- Name: public.Car location; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."public.Car" ALTER COLUMN location SET DEFAULT nextval('public."public.Car_location_seq"'::regclass);
+
+
+--
+-- TOC entry 3194 (class 2604 OID 57269)
+-- Name: public.Customer customer_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."public.Customer" ALTER COLUMN customer_id SET DEFAULT nextval('public."public.Customer_customer_id_seq"'::regclass);
+
+
+--
+-- TOC entry 3195 (class 2604 OID 57270)
+-- Name: public.Customer reservation_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."public.Customer" ALTER COLUMN reservation_id SET DEFAULT nextval('public."public.Customer_reservation_id_seq"'::regclass);
+
+
+--
+-- TOC entry 3196 (class 2604 OID 57280)
+-- Name: public.Employee employee_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."public.Employee" ALTER COLUMN employee_id SET DEFAULT nextval('public."public.Employee_employee_id_seq"'::regclass);
+
+
+--
+-- TOC entry 3197 (class 2604 OID 57281)
+-- Name: public.Employee location; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."public.Employee" ALTER COLUMN location SET DEFAULT nextval('public."public.Employee_location_seq"'::regclass);
+
+
+--
+-- TOC entry 3198 (class 2604 OID 57291)
+-- Name: public.Reservation reservation_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."public.Reservation" ALTER COLUMN reservation_id SET DEFAULT nextval('public."public.Reservation_reservation_id_seq"'::regclass);
+
+
+--
+-- TOC entry 3199 (class 2604 OID 57292)
+-- Name: public.Reservation car_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."public.Reservation" ALTER COLUMN car_id SET DEFAULT nextval('public."public.Reservation_car_id_seq"'::regclass);
+
+
+--
+-- TOC entry 3204 (class 2606 OID 57261)
+-- Name: public.Account Account_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."public.Account"
+    ADD CONSTRAINT "Account_pk" PRIMARY KEY (account_id);
+
+
+--
+-- TOC entry 3220 (class 2606 OID 57310)
+-- Name: public.Branch Branch_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."public.Branch"
+    ADD CONSTRAINT "Branch_pk" PRIMARY KEY (branch_id);
+
+
+--
+-- TOC entry 3218 (class 2606 OID 57303)
+-- Name: public.Car Car_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."public.Car"
+    ADD CONSTRAINT "Car_pk" PRIMARY KEY (car_id);
+
+
+--
+-- TOC entry 3208 (class 2606 OID 57272)
+-- Name: public.Customer Customer_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."public.Customer"
+    ADD CONSTRAINT "Customer_pk" PRIMARY KEY (customer_id);
+
+
+--
+-- TOC entry 3212 (class 2606 OID 57283)
+-- Name: public.Employee Employee_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."public.Employee"
+    ADD CONSTRAINT "Employee_pk" PRIMARY KEY (employee_id);
+
+
+--
+-- TOC entry 3216 (class 2606 OID 57294)
+-- Name: public.Reservation Reservation_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."public.Reservation"
+    ADD CONSTRAINT "Reservation_pk" PRIMARY KEY (reservation_id);
+
+
+--
+-- TOC entry 3206 (class 2606 OID 57263)
+-- Name: public.Account public.Account_email_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."public.Account"
+    ADD CONSTRAINT "public.Account_email_key" UNIQUE (email);
+
+
+--
+-- TOC entry 3210 (class 2606 OID 57274)
+-- Name: public.Customer public.Customer_email_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."public.Customer"
+    ADD CONSTRAINT "public.Customer_email_key" UNIQUE (email);
+
+
+--
+-- TOC entry 3214 (class 2606 OID 57285)
+-- Name: public.Employee public.Employee_email_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."public.Employee"
+    ADD CONSTRAINT "public.Employee_email_key" UNIQUE (email);
+
+
+--
+-- TOC entry 3228 (class 2606 OID 57346)
+-- Name: public.Car Car_fk0; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."public.Car"
+    ADD CONSTRAINT "Car_fk0" FOREIGN KEY (location) REFERENCES public."public.Branch"(branch_id);
+
+
+--
+-- TOC entry 3221 (class 2606 OID 57311)
+-- Name: public.Customer Customer_fk0; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."public.Customer"
+    ADD CONSTRAINT "Customer_fk0" FOREIGN KEY (customer_id) REFERENCES public."public.Account"(account_id);
+
+
+--
+-- TOC entry 3222 (class 2606 OID 57316)
+-- Name: public.Customer Customer_fk1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."public.Customer"
+    ADD CONSTRAINT "Customer_fk1" FOREIGN KEY (email) REFERENCES public."public.Account"(email);
+
+
+--
+-- TOC entry 3223 (class 2606 OID 57321)
+-- Name: public.Customer Customer_fk2; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."public.Customer"
+    ADD CONSTRAINT "Customer_fk2" FOREIGN KEY (reservation_id) REFERENCES public."public.Reservation"(reservation_id);
+
+
+--
+-- TOC entry 3224 (class 2606 OID 57326)
+-- Name: public.Employee Employee_fk0; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."public.Employee"
+    ADD CONSTRAINT "Employee_fk0" FOREIGN KEY (employee_id) REFERENCES public."public.Account"(account_id);
+
+
+--
+-- TOC entry 3225 (class 2606 OID 57331)
+-- Name: public.Employee Employee_fk1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."public.Employee"
+    ADD CONSTRAINT "Employee_fk1" FOREIGN KEY (email) REFERENCES public."public.Account"(email);
+
+
+--
+-- TOC entry 3226 (class 2606 OID 57336)
+-- Name: public.Employee Employee_fk2; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."public.Employee"
+    ADD CONSTRAINT "Employee_fk2" FOREIGN KEY (location) REFERENCES public."public.Branch"(branch_id);
+
+
+--
+-- TOC entry 3227 (class 2606 OID 57341)
+-- Name: public.Reservation Reservation_fk0; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."public.Reservation"
+    ADD CONSTRAINT "Reservation_fk0" FOREIGN KEY (car_id) REFERENCES public."public.Car"(car_id);
+
+
+-- Completed on 2023-01-26 18:43:32
+
+--
+-- PostgreSQL database dump complete
+--
+
