@@ -8,17 +8,19 @@ public class Car {
     private int mileage;
     private int mpg;
     private boolean isAvailable;
+    private int location;
 
     public Car() {
     }
 
-    public Car(String car_type, String car_name, int fuel_capacity, int mileage, int mpg, boolean isAvailable) {
+    public Car(String car_type, String car_name, int fuel_capacity, int mileage, int mpg, boolean isAvailable, int location) {
         this.car_type = car_type;
         this.car_name = car_name;
         this.fuel_capacity = fuel_capacity;
         this.mileage = mileage;
         this.mpg = mpg;
         this.isAvailable = isAvailable;
+        this.location = location;
     }
 
     public int getId() {
@@ -75,5 +77,13 @@ public class Car {
 
     public void setAvailable(boolean available) {
         isAvailable = available;
+    }
+
+    public int getLocation() {
+        return location;
+    }
+
+    public void setLocation(int location) {
+        this.location = location;
     }
 }

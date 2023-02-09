@@ -2,19 +2,23 @@ package com.rentacar.Model;
 
 public class Employee {
     private int id;
-    private String name;
+    private String firstName;
+    private String lastName;
     private String email;
     private String address;
     private String telephone;
+    private int location;
 
     public Employee() {
     }
 
-    public Employee(String name, String email, String address, String telephone) {
-        this.name = name;
+    public Employee(String firstName, String lastName, String email, String address, String telephone, int location) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
         this.address = address;
         this.telephone = telephone;
+        this.location = location;
     }
 
     public int getId() {
@@ -25,12 +29,20 @@ public class Employee {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -55,5 +67,13 @@ public class Employee {
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
+    }
+
+    public int getLocation() {
+        return location;
+    }
+
+    public void setLocation(int location) {
+        this.location = location;
     }
 }

@@ -9,17 +9,15 @@ public class Reservation {
     private Date end_date;
     private BigDecimal invoice;
     private int car_id;
-    private int customer_id;
 
     public Reservation() {
     }
 
-    public Reservation(Date begin_date, Date end_date, BigDecimal invoice, int car_id, int customer_id) {
+    public Reservation(Date begin_date, Date end_date, BigDecimal invoice, int car_id) {
         this.begin_date = begin_date;
         this.end_date = end_date;
         this.invoice = invoice;
         this.car_id = car_id;
-        this.customer_id = customer_id;
     }
 
     public int getId() {
@@ -62,11 +60,4 @@ public class Reservation {
         this.car_id = car_id;
     }
 
-    public int getCustomer_id() {
-        return customer_id;
-    }
-
-    public void setCustomer_id(int customer_id) {
-        this.customer_id = customer_id;
-    }
 }
